@@ -1,3 +1,4 @@
+
 # Uncomment the next line to define a global platform for your project
  platform :ios, '9.0'
 
@@ -6,25 +7,18 @@ target 'Parstagram' do
   use_frameworks!
 
   # Pods for Parstagram
-   pod 'Parse'
+   pod "Parse"
+   pod "AlamofireImage"
+   pod "MessageInputBar" 
+
   target 'ParstagramTests' do
     inherit! :search_paths
     # Pods for testing
-   pod 'Parse'
   end
 
   target 'ParstagramUITests' do
+    inherit! :search_paths
     # Pods for testing
-   pod 'Parse'
   end
-
-source 'https://github.com/CocoaPods/Specs.git'
-
-platform :ios, ‘9.3’  <-- your target version
-
-use_frameworks!
-
-target ’<your target name>’ do
-    pod 'Alamofire', '~> 3.0’
 
 end

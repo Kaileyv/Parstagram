@@ -11,22 +11,42 @@ import Parse
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
         // --- Copy this only
         
-        let parseConfig = ParseClientConfiguration {
-                $0.applicationId = "1gceONCNkNScnFaEg2hXu15DzRGKnXKiQhnUmP92" // <- UPDATE
-                $0.clientKey = "ebDkZL1iWIVIBTdePIr4Bu9XC7gdeB8K5H2DDDhH" // <- UPDATE
-                $0.server = "https://parseapi.back4app.com"
-        }
-        Parse.initialize(with: parseConfig)
+  //      let parseConfig = ParseClientConfiguration {
+   //             $0.applicationId = "1gceONCNkNScnFaEg2hXu15DzRGKnXKiQhnUmP92" // <- UPDATE
+  //              $0.clientKey = "ebDkZL1iWIVIBTdePIr4Bu9XC7gdeB8K5H2DDDhH" // <- UPDATE
+ //               $0.server = "https://parseapi.back4app.com"
+  //      }
+        Parse.initialize(
+            with: ParseClientConfiguration(block:
+                { (configuration: ParseMutableClientConfiguration) -> Void in
+                    configuration.applicationId = "1gceONCNkNScnFaEg2hXu15DzRGKnXKiQhnUmP92"
+                    configuration.clientKey = "ebDkZL1iWIVIBTdePIr4Bu9XC7gdeB8K5H2DDDhH"
+                    configuration.server = "https://parseapi.back4app.com"
+            })
+        )
+        //    with: ParseClientConfiguration(block:
+         //       { (configuration: ParseMutableClientConfiguration) -> Void
+        //        in
+         //       configuration.applicationId = "Parstagram"
+        //        configuration.server = "https://whispering-stream-51370.herokuapp.com/parse"
+         //   })
+    //    )
         
         // --- end copy
-
+        if PFUser.current() != nil
+        {
+            let main = UIStoryboard (name: "Main", bundle: nil)
+            let feedNavigationController = main.instantiateViewController(withIdentifier: "FeedNavigationController")
+            window?.rootViewController = feedNavigationController
+        
+        }
 
         return true
     }
